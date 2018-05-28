@@ -1,11 +1,20 @@
+<% if logged_in?%>
 <h1>タスク一覧</h1>
 
 <ul>
   <% @tasks.each do |task| %>
-    <li><%= link_to task.id, task %>：<%= task.content %> &gt; <%= task.status %></li>
+    <li><%= link_to task.content, task %> &gt; <%= task.status %></li>
   <% end %>
 <ul>
 
 <%= paginate @tasks %>
 
 <%= link_to '新規メッセージの投稿', new_task_path %>
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>Welcom to the tasks</h1>
+      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+<% end %>
